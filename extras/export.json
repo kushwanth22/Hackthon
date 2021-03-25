@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "Hackthon-chat-data",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Hackthon chat data",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"chat-data-metrics\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":12,\"size_y\":2,\"col\":1,\"row\":1},{\"id\":\"chat-data-donut\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":6,\"size_y\":6,\"col\":7,\"row\":3},{\"id\":\"chat-data-user-wordcount\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":6,\"size_y\":6,\"col\":1,\"row\":3}]",
+      "optionsJSON": "{\"darkTheme\":true}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now/d",
+      "timeFrom": "now/d",
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  }
+]

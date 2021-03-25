@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template>
+    <description></description>
+    <name>chatbot</name>
+    <snippet>
+        <controllerServices>
+            <id>3dfb452c-9e3a-4829-8947-fecbb8089f3b</id>
+            <comments></comments>
+            <descriptors>
+                <entry>
+                    <key>Database Connection URL</key>
+                    <value>
+                        <description>A database connection URL used to connect to a database. May contain database
+                            system name, host, port, database name and some parameters. The exact syntax of a database
+                            connection URL is specified by your DBMS.
+                        </description>
+                        <displayName>Database Connection URL</displayName>
+                        <dynamic>false</dynamic>
+                        <name>Database Connection URL</name>
+                        <required>true</required>
+                        <sensitive>false</sensitive>
+                        <supportsEl>false</supportsEl>
+                    </value>
+                </entry>
+                <entry>
+                    <key>Database Driver Class Name</key>
+                    <value>
+                        <description>Database driver class name</description>
+                        <displayName>Database Driver Class Name</displayName>
+                        <dynamic>false</dynamic>
+                        <name>Database Driver Class Name</name>
+                        <required>true</required>
+                        <sensitive>false</sensitive>
+                        <supportsEl>false</supportsEl>
+                    </value>
+                </entry>
+                <entry>
+                    <key>Database Driver Jar Url</key>
+                    <value>
+                        <description>Optional database driver jar file path url. For example
+                            'file:///var/tmp/mariadb-java-client-1.1.7.jar'
+                        </description>
+                        <displayName>Database Driver Jar Url</displayName>
+                        <dynamic>false</dynamic>
+                        <name>Database Driver Jar Url</name>
+                        <required>false</required>
+                        <sensitive>false</sensitive>
+                        <supportsEl>false</supportsEl>
+                    </value>
+                </entry>
+                <entry>
+                    <key>Database User</key>
+                    <value>
+                        <description>Database user name</description>
+                        <displayName>Database User</displayName>
+                        <dynamic>false</dynamic>
+                        <name>Database User</name>
+                        <required>false</required>
+                        <sensitive>false</sensitive>
+                        <supportsEl>false</supportsEl>
+                    </value>
+                </entry>
+                <entry>
+                    <key>Password</key>
+                    <value>
+                        <description>The password for the database user</description>
+                        <displayName>Password</displayName>
+                        <dynamic>false</dynamic>
+                        <name>Password</name>
+                        <required>false</required>
+                        <sensitive>true</sensitive>
+                        <supportsEl>false</supportsEl>
+                    </value>
+                </entry>
+                <entry>
+                    <key>Max Wait Time</key>
+                    <value>
+                        <defaultValue>500 millis</defaultValue>
+                        <description>The maximum amount of time that the pool will wait (when there are no available
+                            connections) for a connection to be returned before failing, or -1 to wait indefinitely.
+                        </description>
+                        <displayName>Max Wait Time</displayName>
+                        <dynamic>false</dynamic>
+                        <name>Max Wait Time</name>
+                        <required>true</required>
+                        <sensitive>false</sensitive>
+                        <supportsEl>false</supportsEl>
+                    </value>
+                </entry>
+                <entry>
+                    <key>Max Total Connections</key>
+                    <value>
+                        <defaultValue>8</defaultValue>
+                        <description>The maximum number of active connections that can be allocated from this pool at
+                            the same time, or negative for no limit.
+                        </description>
+                        <displayName>Max Total Connections</displayName>
+                        <dynamic>false</dynamic>
+                        <name>Max Total Connections</name>
+                        <required>true</required>
+                        <sensitive>false</sensitive>
+                        <supportsEl>false</supportsEl>
+                    </value>
+                </entry>
+            </descriptors>
+            <name>MYSQL CONN SERVICE</name>
+            <properties>
+                <entry>
+                    <key>Database Connection URL</key>
+                    <value>jdbc:mysql://localhost:3306/custdb</value>
+                </entry>
+                <entry>
+                    <key>Database Driver Class Name</key>
+                    <value>com.mysql.jdbc.Driver</value>
+                </entry>
+                <entry>
+                    <key>Database Driver Jar Url</key>
+                    <value>file:///home/hduser/install/mysql-connector-java.jar</value>
+                </entry>
+                <entry>
+                    <key>Database User</key>
+                    <value>root</value>
+                </entry>
+                <entry>
+                    <key>Password</key>
+                </entry>
+                <entry>
+                    <key>Max Wait Time</key>
+                    <value>500 millis</value>
+                </entry>
+                <entry>
+                    <key>Max Total Connections</key>
+                    <value>8</value>
+                </entry>
+            </properties>
+            <referencingComponents>
+                <activeThreadCount>0</activeThreadCount>
+                <descriptors>
+                    <entry>
+                        <key>Database Connection Pooling Service</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>DBCPConnectionPool</displayName>
+                                <value>1eaf872a-937c-4b71-a5ea-5b68b5c10ead</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>MYSQL CONN SERVICE</displayName>
+                                <value>3dfb452c-9e3a-4829-8947-fecbb8089f3b</value>
+                            </allowableValues>
+                            <description>The Controller Service that is used to obtain a connection to the database.
+                            </description>
+                            <displayName>Database Connection Pooling Service</displayName>
+                            <dynamic>false</dynamic>
+                            <identifiesControllerService>org.apache.nifi.dbcp.DBCPService</identifiesControllerService>
+                            <name>Database Connection Pooling Service</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Table Name</key>
+                        <value>
+                            <description>The name of the database table to be queried.</description>
+                            <displayName>Table Name</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Table Name</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Columns to Return</key>
+                        <value>
+                            <description>A comma-separated list of column names to be used in the query. If your
+                                database requires special treatment of the names (quoting, e.g.), each name should
+                                include such treatment. If no column names are supplied, all columns in the specified
+                                table will be returned.
+                            </description>
+                            <displayName>Columns to Return</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Columns to Return</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum-value Columns</key>
+                        <value>
+                            <description>A comma-separated list of column names. The processor will keep track of the
+                                maximum value for each column that has been returned since the processor started
+                                running. This can be used to retrieve only those rows that have been added/updated since
+                                the last retrieval. Note that some JDBC types such as bit/boolean are not conducive to
+                                maintaining maximum value, so columns of these types should not be listed in this
+                                property, and will result in error(s) during processing.
+                            </description>
+                            <displayName>Maximum-value Columns</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Maximum-value Columns</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Max Wait Time</key>
+                        <value>
+                            <defaultValue>0 seconds</defaultValue>
+                            <description>The maximum amount of time allowed for a running SQL select query , zero means
+                                there is no limit. Max time less than 1 second will be equal to zero.
+                            </description>
+                            <displayName>Max Wait Time</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Max Wait Time</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SQL Pre-processing Strategy</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>None</displayName>
+                                <value>None</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>Oracle</displayName>
+                                <value>Oracle</value>
+                            </allowableValues>
+                            <defaultValue>None</defaultValue>
+                            <description>The strategy to employ when generating the SQL for querying the table. A
+                                strategy may include custom or database-specific code, such as the treatment of
+                                time/date formats.
+                            </description>
+                            <displayName>SQL Pre-processing Strategy</displayName>
+                            <dynamic>false</dynamic>
+                            <name>SQL Pre-processing Strategy</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                </descriptors>
+                <groupId>87edc7ed-e964-4105-bf6a-c524d305bde5</groupId>
+                <id>21163095-c302-48e8-b876-16188d72e628</id>
+                <name>QueryDatabaseTable</name>
+                <properties>
+                    <entry>
+                        <key>Database Connection Pooling Service</key>
+                        <value>3dfb452c-9e3a-4829-8947-fecbb8089f3b</value>
+                    </entry>
+                    <entry>
+                        <key>Table Name</key>
+                        <value>customerincremental</value>
+                    </entry>
+                    <entry>
+                        <key>Columns to Return</key>
+                        <value>custid,firstname,lastname,city,age,createdt,transactamt,updts</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum-value Columns</key>
+                        <value>updts</value>
+                    </entry>
+                    <entry>
+                        <key>Max Wait Time</key>
+                        <value>0 seconds</value>
+                    </entry>
+                    <entry>
+                        <key>SQL Pre-processing Strategy</key>
+                        <value>None</value>
+                    </entry>
+                </properties>
+                <referenceType>Processor</referenceType>
+                <state>STOPPED</state>
+                <type>org.apache.nifi.processors.standard.QueryDatabaseTable</type>
+            </referencingComponents>
+            <referencingComponents>
+                <activeThreadCount>0</activeThreadCount>
+                <descriptors>
+                    <entry>
+                        <key>Database Connection Pooling Service</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>DBCPConnectionPool</displayName>
+                                <value>1eaf872a-937c-4b71-a5ea-5b68b5c10ead</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>MYSQL CONN SERVICE</displayName>
+                                <value>3dfb452c-9e3a-4829-8947-fecbb8089f3b</value>
+                            </allowableValues>
+                            <description>The Controller Service that is used to obtain a connection to the database.
+                            </description>
+                            <displayName>Database Connection Pooling Service</displayName>
+                            <dynamic>false</dynamic>
+                            <identifiesControllerService>org.apache.nifi.dbcp.DBCPService</identifiesControllerService>
+                            <name>Database Connection Pooling Service</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Table Name</key>
+                        <value>
+                            <description>The name of the database table to be queried.</description>
+                            <displayName>Table Name</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Table Name</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Columns to Return</key>
+                        <value>
+                            <description>A comma-separated list of column names to be used in the query. If your
+                                database requires special treatment of the names (quoting, e.g.), each name should
+                                include such treatment. If no column names are supplied, all columns in the specified
+                                table will be returned.
+                            </description>
+                            <displayName>Columns to Return</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Columns to Return</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum-value Columns</key>
+                        <value>
+                            <description>A comma-separated list of column names. The processor will keep track of the
+                                maximum value for each column that has been returned since the processor started
+                                running. This can be used to retrieve only those rows that have been added/updated since
+                                the last retrieval. Note that some JDBC types such as bit/boolean are not conducive to
+                                maintaining maximum value, so columns of these types should not be listed in this
+                                property, and will result in error(s) during processing.
+                            </description>
+                            <displayName>Maximum-value Columns</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Maximum-value Columns</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Max Wait Time</key>
+                        <value>
+                            <defaultValue>0 seconds</defaultValue>
+                            <description>The maximum amount of time allowed for a running SQL select query , zero means
+                                there is no limit. Max time less than 1 second will be equal to zero.
+                            </description>
+                            <displayName>Max Wait Time</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Max Wait Time</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>SQL Pre-processing Strategy</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>None</displayName>
+                                <value>None</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>Oracle</displayName>
+                                <value>Oracle</value>
+                            </allowableValues>
+                            <defaultValue>None</defaultValue>
+                            <description>The strategy to employ when generating the SQL for querying the table. A
+                                strategy may include custom or database-specific code, such as the treatment of
+                                time/date formats.
+                            </description>
+                            <displayName>SQL Pre-processing Strategy</displayName>
+                            <dynamic>false</dynamic>
+                            <name>SQL Pre-processing Strategy</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                </descriptors>
+                <groupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</groupId>
+                <id>d68ef528-d244-458e-a31b-3c42dd67505b</id>
+                <name>QueryDatabaseTable</name>
+                <properties>
+                    <entry>
+                        <key>Database Connection Pooling Service</key>
+                        <value>3dfb452c-9e3a-4829-8947-fecbb8089f3b</value>
+                    </entry>
+                    <entry>
+                        <key>Table Name</key>
+                        <value>chatdata</value>
+                    </entry>
+                    <entry>
+                        <key>Columns to Return</key>
+                        <value>id,chattext,agentcustind,updts</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum-value Columns</key>
+                        <value>updts</value>
+                    </entry>
+                    <entry>
+                        <key>Max Wait Time</key>
+                        <value>0 seconds</value>
+                    </entry>
+                    <entry>
+                        <key>SQL Pre-processing Strategy</key>
+                        <value>None</value>
+                    </entry>
+                </properties>
+                <referenceType>Processor</referenceType>
+                <state>STOPPED</state>
+                <type>org.apache.nifi.processors.standard.QueryDatabaseTable</type>
+            </referencingComponents>
+            <state>ENABLED</state>
+            <type>org.apache.nifi.dbcp.DBCPConnectionPool</type>
+        </controllerServices>
+        <processGroups>
+            <id>30a6e8cd-6443-4d73-80ac-28d58bf94064</id>
+            <parentGroupId>99f16199-5a19-42c4-87bb-7b200c189c5b</parentGroupId>
+            <position>
+                <x>1202.9988125165303</x>
+                <y>427.74680813153583</y>
+            </position>
+            <activeRemotePortCount>0</activeRemotePortCount>
+            <comments></comments>
+            <contents>
+                <connections>
+                    <id>be2b09df-01ae-4fbc-98e5-8aeb0fdc6b08</id>
+                    <parentGroupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</parentGroupId>
+                    <backPressureDataSizeThreshold>0 MB</backPressureDataSizeThreshold>
+                    <backPressureObjectThreshold>0</backPressureObjectThreshold>
+                    <destination>
+                        <groupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</groupId>
+                        <id>8bbbe5c7-487f-4347-b6cd-7222047a48f2</id>
+                        <type>PROCESSOR</type>
+                    </destination>
+                    <flowFileExpiration>0 sec</flowFileExpiration>
+                    <labelIndex>1</labelIndex>
+                    <name></name>
+                    <selectedRelationships>success</selectedRelationships>
+                    <source>
+                        <groupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</groupId>
+                        <id>65867517-b9fb-4cd3-991b-1c25c4a93f6d</id>
+                        <type>PROCESSOR</type>
+                    </source>
+                    <zIndex>0</zIndex>
+                </connections>
+                <connections>
+                    <id>30a8b595-1f85-474d-8a80-317da56f0d13</id>
+                    <parentGroupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</parentGroupId>
+                    <backPressureDataSizeThreshold>0 MB</backPressureDataSizeThreshold>
+                    <backPressureObjectThreshold>0</backPressureObjectThreshold>
+                    <destination>
+                        <groupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</groupId>
+                        <id>65867517-b9fb-4cd3-991b-1c25c4a93f6d</id>
+                        <type>PROCESSOR</type>
+                    </destination>
+                    <flowFileExpiration>0 sec</flowFileExpiration>
+                    <labelIndex>1</labelIndex>
+                    <name></name>
+                    <selectedRelationships>success</selectedRelationships>
+                    <source>
+                        <groupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</groupId>
+                        <id>d68ef528-d244-458e-a31b-3c42dd67505b</id>
+                        <type>PROCESSOR</type>
+                    </source>
+                    <zIndex>0</zIndex>
+                </connections>
+                <processors>
+                    <id>d68ef528-d244-458e-a31b-3c42dd67505b</id>
+                    <parentGroupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</parentGroupId>
+                    <position>
+                        <x>476.31288089625264</x>
+                        <y>226.56036394888605</y>
+                    </position>
+                    <config>
+                        <bulletinLevel>WARN</bulletinLevel>
+                        <comments></comments>
+                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                        <defaultConcurrentTasks>
+                            <entry>
+                                <key>TIMER_DRIVEN</key>
+                                <value>1</value>
+                            </entry>
+                            <entry>
+                                <key>EVENT_DRIVEN</key>
+                                <value>0</value>
+                            </entry>
+                            <entry>
+                                <key>CRON_DRIVEN</key>
+                                <value>1</value>
+                            </entry>
+                        </defaultConcurrentTasks>
+                        <defaultSchedulingPeriod>
+                            <entry>
+                                <key>TIMER_DRIVEN</key>
+                                <value>0 sec</value>
+                            </entry>
+                            <entry>
+                                <key>CRON_DRIVEN</key>
+                                <value>* * * * * ?</value>
+                            </entry>
+                        </defaultSchedulingPeriod>
+                        <descriptors>
+                            <entry>
+                                <key>Database Connection Pooling Service</key>
+                                <value>
+                                    <allowableValues>
+                                        <displayName>DBCPConnectionPool</displayName>
+                                        <value>1eaf872a-937c-4b71-a5ea-5b68b5c10ead</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <displayName>MYSQL CONN SERVICE</displayName>
+                                        <value>3dfb452c-9e3a-4829-8947-fecbb8089f3b</value>
+                                    </allowableValues>
+                                    <description>The Controller Service that is used to obtain a connection to the
+                                        database.
+                                    </description>
+                                    <displayName>Database Connection Pooling Service</displayName>
+                                    <dynamic>false</dynamic>
+                                    <identifiesControllerService>org.apache.nifi.dbcp.DBCPService
+                                    </identifiesControllerService>
+                                    <name>Database Connection Pooling Service</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Table Name</key>
+                                <value>
+                                    <description>The name of the database table to be queried.</description>
+                                    <displayName>Table Name</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Table Name</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Columns to Return</key>
+                                <value>
+                                    <description>A comma-separated list of column names to be used in the query. If your
+                                        database requires special treatment of the names (quoting, e.g.), each name
+                                        should include such treatment. If no column names are supplied, all columns in
+                                        the specified table will be returned.
+                                    </description>
+                                    <displayName>Columns to Return</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Columns to Return</name>
+                                    <required>false</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Maximum-value Columns</key>
+                                <value>
+                                    <description>A comma-separated list of column names. The processor will keep track
+                                        of the maximum value for each column that has been returned since the processor
+                                        started running. This can be used to retrieve only those rows that have been
+                                        added/updated since the last retrieval. Note that some JDBC types such as
+                                        bit/boolean are not conducive to maintaining maximum value, so columns of these
+                                        types should not be listed in this property, and will result in error(s) during
+                                        processing.
+                                    </description>
+                                    <displayName>Maximum-value Columns</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Maximum-value Columns</name>
+                                    <required>false</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Max Wait Time</key>
+                                <value>
+                                    <defaultValue>0 seconds</defaultValue>
+                                    <description>The maximum amount of time allowed for a running SQL select query ,
+                                        zero means there is no limit. Max time less than 1 second will be equal to zero.
+                                    </description>
+                                    <displayName>Max Wait Time</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Max Wait Time</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>SQL Pre-processing Strategy</key>
+                                <value>
+                                    <allowableValues>
+                                        <displayName>None</displayName>
+                                        <value>None</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <displayName>Oracle</displayName>
+                                        <value>Oracle</value>
+                                    </allowableValues>
+                                    <defaultValue>None</defaultValue>
+                                    <description>The strategy to employ when generating the SQL for querying the table.
+                                        A strategy may include custom or database-specific code, such as the treatment
+                                        of time/date formats.
+                                    </description>
+                                    <displayName>SQL Pre-processing Strategy</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>SQL Pre-processing Strategy</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                        </descriptors>
+                        <lossTolerant>false</lossTolerant>
+                        <penaltyDuration>30 sec</penaltyDuration>
+                        <properties>
+                            <entry>
+                                <key>Database Connection Pooling Service</key>
+                                <value>3dfb452c-9e3a-4829-8947-fecbb8089f3b</value>
+                            </entry>
+                            <entry>
+                                <key>Table Name</key>
+                                <value>chatdata</value>
+                            </entry>
+                            <entry>
+                                <key>Columns to Return</key>
+                                <value>id,chattext,agentcustind,updts</value>
+                            </entry>
+                            <entry>
+                                <key>Maximum-value Columns</key>
+                                <value>updts</value>
+                            </entry>
+                            <entry>
+                                <key>Max Wait Time</key>
+                                <value>0 seconds</value>
+                            </entry>
+                            <entry>
+                                <key>SQL Pre-processing Strategy</key>
+                                <value>None</value>
+                            </entry>
+                        </properties>
+                        <runDurationMillis>0</runDurationMillis>
+                        <schedulingPeriod>0 sec</schedulingPeriod>
+                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                        <yieldDuration>1 sec</yieldDuration>
+                    </config>
+                    <name>QueryDatabaseTable</name>
+                    <relationships>
+                        <autoTerminate>false</autoTerminate>
+                        <description>Successfully created FlowFile from SQL query result set.</description>
+                        <name>success</name>
+                    </relationships>
+                    <state>STOPPED</state>
+                    <style/>
+                    <supportsEventDriven>true</supportsEventDriven>
+                    <supportsParallelProcessing>true</supportsParallelProcessing>
+                    <type>org.apache.nifi.processors.standard.QueryDatabaseTable</type>
+                </processors>
+                <processors>
+                    <id>8bbbe5c7-487f-4347-b6cd-7222047a48f2</id>
+                    <parentGroupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</parentGroupId>
+                    <position>
+                        <x>1036.8184973110388</x>
+                        <y>226.74825614646682</y>
+                    </position>
+                    <config>
+                        <bulletinLevel>WARN</bulletinLevel>
+                        <comments></comments>
+                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                        <defaultConcurrentTasks>
+                            <entry>
+                                <key>TIMER_DRIVEN</key>
+                                <value>1</value>
+                            </entry>
+                            <entry>
+                                <key>EVENT_DRIVEN</key>
+                                <value>0</value>
+                            </entry>
+                            <entry>
+                                <key>CRON_DRIVEN</key>
+                                <value>1</value>
+                            </entry>
+                        </defaultConcurrentTasks>
+                        <defaultSchedulingPeriod>
+                            <entry>
+                                <key>TIMER_DRIVEN</key>
+                                <value>0 sec</value>
+                            </entry>
+                            <entry>
+                                <key>CRON_DRIVEN</key>
+                                <value>* * * * * ?</value>
+                            </entry>
+                        </defaultSchedulingPeriod>
+                        <descriptors>
+                            <entry>
+                                <key>Known Brokers</key>
+                                <value>
+                                    <description>A comma-separated list of known Kafka Brokers in the format &lt;host&gt;:&lt;port&gt;</description>
+                                    <displayName>Known Brokers</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Known Brokers</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Topic Name</key>
+                                <value>
+                                    <description>The Kafka Topic of interest</description>
+                                    <displayName>Topic Name</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Topic Name</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>true</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Partition Strategy</key>
+                                <value>
+                                    <allowableValues>
+                                        <description>Messages will be assigned partitions in a round-robin fashion,
+                                            sending the first message to Partition 1, the next Partition to Partition 2,
+                                            and so on, wrapping as necessary.
+                                        </description>
+                                        <displayName>Round Robin</displayName>
+                                        <value>Round Robin</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <description>Messages will be assigned to random partitions.</description>
+                                        <displayName>Random</displayName>
+                                        <value>Random Robin</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <description>The &lt;Partition&gt; property will be used to determine the
+                                            partition. All messages within the same FlowFile will be assigned to the
+                                            same partition.
+                                        </description>
+                                        <displayName>User-Defined</displayName>
+                                        <value>User-Defined</value>
+                                    </allowableValues>
+                                    <defaultValue>Round Robin</defaultValue>
+                                    <description>Specifies how messages should be partitioned when sent to Kafka
+                                    </description>
+                                    <displayName>Partition Strategy</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Partition Strategy</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Partition</key>
+                                <value>
+                                    <description>Specifies which Kafka Partition to add the message to. If using a
+                                        message delimiter, all messages in the same FlowFile will be sent to the same
+                                        partition. If a partition is specified but is not valid, then all messages
+                                        within the same FlowFile will use the same partition but it remains undefined
+                                        which partition is used.
+                                    </description>
+                                    <displayName>Partition</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Partition</name>
+                                    <required>false</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>true</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Kafka Key</key>
+                                <value>
+                                    <description>The Key to use for the Message</description>
+                                    <displayName>Kafka Key</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Kafka Key</name>
+                                    <required>false</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>true</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Delivery Guarantee</key>
+                                <value>
+                                    <allowableValues>
+                                        <description>FlowFile will be routed to success after successfully writing the
+                                            content to a Kafka node, without waiting for a response. This provides the
+                                            best performance but may result in data loss.
+                                        </description>
+                                        <displayName>Best Effort</displayName>
+                                        <value>0</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <description>FlowFile will be routed to success if the message is received by a
+                                            single Kafka node, whether or not it is replicated. This is faster than &lt;Guarantee
+                                            Replicated Delivery&gt; but can result in data loss if a Kafka node crashes
+                                        </description>
+                                        <displayName>Guarantee Single Node Delivery</displayName>
+                                        <value>1</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <description>FlowFile will be routed to failure unless the message is replicated
+                                            to the appropriate number of Kafka Nodes according to the Topic
+                                            configuration
+                                        </description>
+                                        <displayName>Guarantee Replicated Delivery</displayName>
+                                        <value>all</value>
+                                    </allowableValues>
+                                    <defaultValue>0</defaultValue>
+                                    <description>Specifies the requirement for guaranteeing that a message is sent to
+                                        Kafka
+                                    </description>
+                                    <displayName>Delivery Guarantee</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Delivery Guarantee</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Message Delimiter</key>
+                                <value>
+                                    <description>Specifies the delimiter to use for splitting apart multiple messages
+                                        within a single FlowFile. If not specified, the entire content of the FlowFile
+                                        will be used as a single message. If specified, the contents of the FlowFile
+                                        will be split on this delimiter and each section sent as a separate Kafka
+                                        message. Note that if messages are delimited and some messages for a given
+                                        FlowFile are transferred successfully while others are not, the messages will be
+                                        split into individual FlowFiles, such that those messages that were successfully
+                                        sent are routed to the 'success' relationship while other messages are sent to
+                                        the 'failure' relationship.
+                                    </description>
+                                    <displayName>Message Delimiter</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Message Delimiter</name>
+                                    <required>false</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>true</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Max Buffer Size</key>
+                                <value>
+                                    <defaultValue>5 MB</defaultValue>
+                                    <description>The maximum amount of data to buffer in memory before sending to
+                                        Kafka
+                                    </description>
+                                    <displayName>Max Buffer Size</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Max Buffer Size</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Max Record Size</key>
+                                <value>
+                                    <defaultValue>1 MB</defaultValue>
+                                    <description>The maximum size that any individual record can be.</description>
+                                    <displayName>Max Record Size</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Max Record Size</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Communications Timeout</key>
+                                <value>
+                                    <defaultValue>30 secs</defaultValue>
+                                    <description>The amount of time to wait for a response from Kafka before determining
+                                        that there is a communications error
+                                    </description>
+                                    <displayName>Communications Timeout</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Communications Timeout</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Async Batch Size</key>
+                                <value>
+                                    <defaultValue>200</defaultValue>
+                                    <description>The number of messages to send in one batch. The producer will wait
+                                        until either this number of messages are ready to send or &quot;Queue Buffering
+                                        Max Time&quot; is reached. NOTE: This property will be ignored unless the
+                                        'Message Delimiter' property is specified.
+                                    </description>
+                                    <displayName>Batch Size</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Async Batch Size</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Queue Buffering Max Time</key>
+                                <value>
+                                    <defaultValue>5 secs</defaultValue>
+                                    <description>Maximum time to buffer data before sending to Kafka. For example a
+                                        setting of 100 ms will try to batch together 100 milliseconds' worth of messages
+                                        to send at once. This will improve throughput but adds message delivery latency
+                                        due to the buffering.
+                                    </description>
+                                    <displayName>Queue Buffering Max Time</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Queue Buffering Max Time</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Compression Codec</key>
+                                <value>
+                                    <allowableValues>
+                                        <description>Compression will not be used for any topic.</description>
+                                        <displayName>None</displayName>
+                                        <value>none</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <description>Compress messages using GZIP</description>
+                                        <displayName>GZIP</displayName>
+                                        <value>gzip</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <description>Compress messages using Snappy</description>
+                                        <displayName>Snappy</displayName>
+                                        <value>snappy</value>
+                                    </allowableValues>
+                                    <defaultValue>none</defaultValue>
+                                    <description>This parameter allows you to specify the compression codec for all data
+                                        generated by this producer.
+                                    </description>
+                                    <displayName>Compression Codec</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Compression Codec</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Client Name</key>
+                                <value>
+                                    <description>Client Name to use when communicating with Kafka</description>
+                                    <displayName>Client Name</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Client Name</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                        </descriptors>
+                        <lossTolerant>false</lossTolerant>
+                        <penaltyDuration>30 sec</penaltyDuration>
+                        <properties>
+                            <entry>
+                                <key>Known Brokers</key>
+                                <value>127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094</value>
+                            </entry>
+                            <entry>
+                                <key>Topic Name</key>
+                                <value>chatbot</value>
+                            </entry>
+                            <entry>
+                                <key>Partition Strategy</key>
+                                <value>Round Robin</value>
+                            </entry>
+                            <entry>
+                                <key>Partition</key>
+                            </entry>
+                            <entry>
+                                <key>Kafka Key</key>
+                            </entry>
+                            <entry>
+                                <key>Delivery Guarantee</key>
+                                <value>0</value>
+                            </entry>
+                            <entry>
+                                <key>Message Delimiter</key>
+                            </entry>
+                            <entry>
+                                <key>Max Buffer Size</key>
+                                <value>5 MB</value>
+                            </entry>
+                            <entry>
+                                <key>Max Record Size</key>
+                                <value>1 MB</value>
+                            </entry>
+                            <entry>
+                                <key>Communications Timeout</key>
+                                <value>30 secs</value>
+                            </entry>
+                            <entry>
+                                <key>Async Batch Size</key>
+                                <value>200</value>
+                            </entry>
+                            <entry>
+                                <key>Queue Buffering Max Time</key>
+                                <value>5 secs</value>
+                            </entry>
+                            <entry>
+                                <key>Compression Codec</key>
+                                <value>none</value>
+                            </entry>
+                            <entry>
+                                <key>Client Name</key>
+                                <value>test</value>
+                            </entry>
+                        </properties>
+                        <runDurationMillis>0</runDurationMillis>
+                        <schedulingPeriod>0 sec</schedulingPeriod>
+                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                        <yieldDuration>1 sec</yieldDuration>
+                    </config>
+                    <name>PutKafka</name>
+                    <relationships>
+                        <autoTerminate>true</autoTerminate>
+                        <description>Any FlowFile that cannot be sent to Kafka will be routed to this Relationship
+                        </description>
+                        <name>failure</name>
+                    </relationships>
+                    <relationships>
+                        <autoTerminate>true</autoTerminate>
+                        <description>Any FlowFile that is successfully sent to Kafka will be routed to this
+                            Relationship
+                        </description>
+                        <name>success</name>
+                    </relationships>
+                    <state>STOPPED</state>
+                    <style/>
+                    <supportsEventDriven>false</supportsEventDriven>
+                    <supportsParallelProcessing>true</supportsParallelProcessing>
+                    <type>org.apache.nifi.processors.kafka.PutKafka</type>
+                </processors>
+                <processors>
+                    <id>65867517-b9fb-4cd3-991b-1c25c4a93f6d</id>
+                    <parentGroupId>30a6e8cd-6443-4d73-80ac-28d58bf94064</parentGroupId>
+                    <position>
+                        <x>801.886973329245</x>
+                        <y>46.87974884777461</y>
+                    </position>
+                    <config>
+                        <bulletinLevel>WARN</bulletinLevel>
+                        <comments></comments>
+                        <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                        <defaultConcurrentTasks>
+                            <entry>
+                                <key>TIMER_DRIVEN</key>
+                                <value>1</value>
+                            </entry>
+                            <entry>
+                                <key>EVENT_DRIVEN</key>
+                                <value>0</value>
+                            </entry>
+                            <entry>
+                                <key>CRON_DRIVEN</key>
+                                <value>1</value>
+                            </entry>
+                        </defaultConcurrentTasks>
+                        <defaultSchedulingPeriod>
+                            <entry>
+                                <key>TIMER_DRIVEN</key>
+                                <value>0 sec</value>
+                            </entry>
+                            <entry>
+                                <key>CRON_DRIVEN</key>
+                                <value>* * * * * ?</value>
+                            </entry>
+                        </defaultSchedulingPeriod>
+                        <descriptors>
+                            <entry>
+                                <key>JSON container options</key>
+                                <value>
+                                    <allowableValues>
+                                        <displayName>none</displayName>
+                                        <value>none</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <displayName>array</displayName>
+                                        <value>array</value>
+                                    </allowableValues>
+                                    <defaultValue>array</defaultValue>
+                                    <description>Determines how stream of records is exposed: either as a sequence of
+                                        single Objects (none) (i.e. writing every Object to a new line), or as an array
+                                        of Objects (array).
+                                    </description>
+                                    <displayName>JSON container options</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>JSON container options</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                            <entry>
+                                <key>Wrap Single Record</key>
+                                <value>
+                                    <allowableValues>
+                                        <displayName>true</displayName>
+                                        <value>true</value>
+                                    </allowableValues>
+                                    <allowableValues>
+                                        <displayName>false</displayName>
+                                        <value>false</value>
+                                    </allowableValues>
+                                    <defaultValue>false</defaultValue>
+                                    <description>Determines if the resulting output for empty records or a single record
+                                        should be wrapped in a container array as specified by 'JSON container options'
+                                    </description>
+                                    <displayName>Wrap Single Record</displayName>
+                                    <dynamic>false</dynamic>
+                                    <name>Wrap Single Record</name>
+                                    <required>true</required>
+                                    <sensitive>false</sensitive>
+                                    <supportsEl>false</supportsEl>
+                                </value>
+                            </entry>
+                        </descriptors>
+                        <lossTolerant>false</lossTolerant>
+                        <penaltyDuration>30 sec</penaltyDuration>
+                        <properties>
+                            <entry>
+                                <key>JSON container options</key>
+                                <value>array</value>
+                            </entry>
+                            <entry>
+                                <key>Wrap Single Record</key>
+                                <value>false</value>
+                            </entry>
+                        </properties>
+                        <runDurationMillis>0</runDurationMillis>
+                        <schedulingPeriod>0 sec</schedulingPeriod>
+                        <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                        <yieldDuration>1 sec</yieldDuration>
+                    </config>
+                    <name>ConvertAvroToJSON</name>
+                    <relationships>
+                        <autoTerminate>true</autoTerminate>
+                        <description>A FlowFile is routed to this relationship if it cannot be parsed as Avro or cannot
+                            be converted to JSON for any reason
+                        </description>
+                        <name>failure</name>
+                    </relationships>
+                    <relationships>
+                        <autoTerminate>false</autoTerminate>
+                        <description>A FlowFile is routed to this relationship after it has been converted to JSON
+                        </description>
+                        <name>success</name>
+                    </relationships>
+                    <state>STOPPED</state>
+                    <style/>
+                    <supportsEventDriven>false</supportsEventDriven>
+                    <supportsParallelProcessing>true</supportsParallelProcessing>
+                    <type>org.apache.nifi.processors.avro.ConvertAvroToJSON</type>
+                </processors>
+            </contents>
+            <disabledCount>0</disabledCount>
+            <inactiveRemotePortCount>0</inactiveRemotePortCount>
+            <inputPortCount>0</inputPortCount>
+            <invalidCount>0</invalidCount>
+            <name>Chatbot</name>
+            <outputPortCount>0</outputPortCount>
+            <parent>
+                <id>99f16199-5a19-42c4-87bb-7b200c189c5b</id>
+                <name>NiFi Flow</name>
+            </parent>
+            <runningCount>0</runningCount>
+            <stoppedCount>3</stoppedCount>
+        </processGroups>
+    </snippet>
+    <timestamp>03/14/2021 21:05:23 EDT</timestamp>
+</template>
